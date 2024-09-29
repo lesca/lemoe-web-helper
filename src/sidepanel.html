@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lemoe Web Helper</title>
+  <!-- <link rel="stylesheet" href="3rdparty/github-markdown.min.css"> -->
+  <script src="3rdparty/marked.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      height: 85vh;
+    }
+    #result {
+      flex-grow: 1;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      width: 100%;
+      height: 90%;
+      border-color: #4b4b4b;
+      font-size: 1.4em;
+    }
+    .bubble {
+      margin: 10px 0;
+      border: 1px solid #4b4b4b;
+      border-radius: 10px;
+      padding: 10px;
+    }
+    .bubble-header {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    .bubble-icons {
+      display: flex;
+      justify-content: flex-start;
+    }
+    .bubble-icon {
+      margin: 0 5px;
+    }
+    #buttons {
+      display: flex;
+      flex-direction: column;
+      width: 95%;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-bottom: 10px;
+    }
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 5px;
+      font-size: 1.3em;
+      cursor: pointer;
+      flex-grow: 1;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="result" class="markdown-body"></div>
+  <div id="status"></div>
+  <div id="buttons">
+    <div class="button-row">
+      <button id="summarize">Summarize</button>
+      <button id="translate">Translate</button>
+      <button id="explain">Explain</button>
+      <button id="custom">Custom</button>
+    </div>
+    <div class="button-row">
+      <button id="copy">Copy All</button>
+      <button id="clear">Clear</button>
+      <button id="settings">Settings</button>
+    </div>
+  </div>
+  <script src="sidepanel.js"></script>
+</body>
+</html>

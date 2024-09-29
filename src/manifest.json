@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Lemoe Web Helper",
+  "version": "1.0",
+  "description": "Lemoe Web Helper with AI capabilities for Anki.",
+  "permissions": ["tabs", "storage", "scripting", "sidePanel"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "options_page": "settings.html",
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+A"
+      },
+      "description": "Activate the extension"
+    }
+  }
+}

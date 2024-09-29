@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add to Anki</title>
+  <script src="3rdparty/js-yaml.min.js"></script>
+  <script src="anki.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      font-size: 16px;
+    }
+
+    textarea {
+      width: 80%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 0.5em;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .text-container {
+      font-size: 1em;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      margin-bottom: 1.5em;
+    }
+
+    .anki-data-term,
+    .anki-data-ipa,
+    .anki-data-meaning {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      font-size: 1em;
+    }
+
+    .anki-settings-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+    }
+
+    .anki-settings-item select {
+      font-size: 1em;
+      width: 200px;
+    }
+
+    .anki-settings-item input {
+      font-size: 1em;
+      width: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Add to Anki</h1>
+  <div class="text-container">
+    <div><b>Text:</b></div>
+    <textarea id="selected-text" placeholder="" rows="2"></textarea>
+    <div><b>Translation:</b></div>
+    <textarea id="translation" placeholder="Processing..." rows="2"></textarea>
+  </div>
+  <form id="anki-form">
+    <table id="terms-table">
+      <thead>
+        <tr>
+          <th>Select</th>
+          <th>Term</th>
+          <th>IPA</th>
+          <th>Meaning</th>
+          <th>Extended</th>
+          <th>Phrases</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <button id="add-to-anki">Add to Anki</button>
+  </form>
+  <div id="status"></div>
+  <div id="anki-json" style="display: none;"></div>
+  <h2>Anki Connect Settings</h2>
+  <div class="settings-container">
+    <button id="toggle-anki-settings" class="toggle-button">Anki Settings ▼</button>
+    <form id="anki-settings-form" style="display: none;">
+      <div class="anki-settings-item">
+        <label for="anki-deck">Deck:</label>
+        <select id="anki-deck" name="anki-deck" required>
+          <option value="">Select a deck</option>
+        </select>
+      </div>
+      <div class="anki-settings-item">
+        <label for="anki-model">Model:</label>
+        <select id="anki-model" name="anki-model" required>
+          <option value="">Select a model</option>
+        </select>
+      </div>
+      <div class="anki-settings-item">
+        <label for="anki-term">Term:</label>
+        <select id="anki-term" name="anki-term" required>
+          <option value="">Select a field</option>
+        </select>
+      </div>
+      <div class="anki-settings-item">
+        <label for="anki-ipa">IPA:</label>
+        <select id="anki-ipa" name="anki-ipa">
+          <option value="">Select a field</option>
+        </select>
+      </div>
+      <div class="anki-settings-item">
+        <label for="anki-meaning">Meaning:</label>
+        <select id="anki-meaning" name="anki-meaning" required>
+          <option value="">Select a field</option>
+        </select>
+      </div>
+      <div class="anki-settings-item">
+        <label for="anki-extended">Extended:</label>
+        <select id="anki-extended" name="anki-extended">
+          <option value="">Select a field</option>
+        </select>
+      </div>
+      <div class="anki-settings-item">
+        <label for="anki-phrase">Phrase:</label>
+        <select id="anki-phrase" name="anki-phrase">
+          <option value="">Select a field</option>
+        </select>
+      </div>
+      <div class="anki-settings-item">
+        <label for="anki-text">Text:</label>
+        <select id="anki-text" name="anki-text">
+          <option value="">Select a field</option>
+        </select>
+      </div>
+      <div class="anki-settings-item">
+        <label for="anki-translation">Translation:</label>
+        <select id="anki-translation" name="anki-translation">
+          <option value="">Select a field</option>
+        </select>
+      </div>
+      <div class="anki-settings-item">
+        <label for="anki-tags">Tags (comma-separated):</label>
+        <input type="text" id="anki-tags" name="anki-tags" value="lemoe">
+      </div>
+      <button id="save-anki-settings">Save Anki Settings</button>
+    </form>
+  </div>
+
+</body>
+
+</html>
